@@ -1,0 +1,95 @@
+/* Custom Styles */
+.clash-gradient {
+    background: linear-gradient(135deg, #1E90FF, #0A2A43);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.clash-bg-gradient {
+    background: linear-gradient(135deg, rgba(30, 144, 255, 0.05) 0%, rgba(10, 42, 67, 0.05) 100%);
+}
+
+.role-leader { background: linear-gradient(45deg, #1B4DB1, #0F3A75); color: white; }
+.role-coLeader { background: linear-gradient(45deg, #1A5FD7, #1B4DB1); color: white; }
+.role-elder { background: linear-gradient(45deg, #1E90FF, #1A5FD7); color: white; }
+.role-member { background: linear-gradient(45deg, #4B5563, #6B7280); color: white; }
+
+/* Animations */
+@keyframes floating {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, -10px); }
+    100% { transform: translate(0, 0px); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(30, 144, 255, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(30, 144, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(30, 144, 255, 0); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.floating { animation: floating 3s ease-in-out infinite; }
+.pulse { animation: pulse 2s infinite; }
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1E90FF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Card Hover Effects */
+.hover-lift:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Table Styles */
+.table-striped tbody tr:nth-child(odd) {
+    background-color: rgba(229, 242, 255, 0.3);
+}
+
+/* Badge Styles */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #1E90FF, #0A2A43);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
+}
+
+/* Input Styles */
+.input-primary {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-primary:focus {
+    outline: none;
+    border-color: #1E90FF;
+    box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+}

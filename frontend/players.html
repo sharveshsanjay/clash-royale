@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Search - CLASH SQUAD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'clash-gold': '#1B4DB1',
+                        'clash-orange': '#0F3A75',
+                        'clash-red': '#1A5FD7',
+                        'clash-blue': '#1E90FF',
+                        'clash-dark': '#0A2A43',
+                        'clash-light': '#E5F2FF',
+                    },
+                    fontFamily: {
+                        'clash': ['Montserrat', 'sans-serif'],
+                        'rubik': ['Rubik', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'clash': '0 4px 12px rgba(30, 144, 255, 0.25)',
+                        'clash-hover': '0 8px 24px rgba(30, 144, 255, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white font-rubik text-gray-800">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow-clash z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-clash-blue to-clash-dark rounded-full flex items-center justify-center text-white font-bold text-xl shadow-clash">
+                        CS
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold font-clash text-clash-blue">CLASH SQUAD</h1>
+                        <p class="text-gray-500 text-sm">Player Search</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Home</a>
+                    <a href="members.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Members</a>
+                    <a href="players.html" class="font-semibold text-clash-blue border-b-2 border-clash-blue pb-1">Players</a>
+                    <a href="capital.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Capital</a>
+                </nav>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Home</a>
+                    <a href="members.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Members</a>
+                    <a href="players.html" class="font-semibold text-clash-blue border-l-4 border-clash-blue pl-3 py-2">Players</a>
+                    <a href="capital.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Capital</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold font-clash clash-gradient mb-2 text-center">
+                Player Search
+            </h1>
+            <p class="text-gray-600 text-center mb-8">Search for any Clash Royale player by tag</p>
+
+            <!-- Search Form -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="bg-white rounded-2xl shadow-clash p-6">
+                    <form id="playerSearchForm" class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2 font-medium">Player Tag</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="playerTagInput" 
+                                       placeholder="#PlayerTag (e.g., #9YVJ0UVV)" 
+                                       class="flex-1 input-primary" required>
+                                <button type="submit" class="btn-primary whitespace-nowrap">
+                                    <i class="fas fa-search mr-2"></i> Search
+                                </button>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">
+                                Enter the player's tag (include the # symbol)
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Player Info -->
+            <div id="playerInfo" class="hidden">
+                <!-- Content loaded by JavaScript -->
+            </div>
+
+            <!-- Loading -->
+            <div id="loading" class="text-center py-12 hidden">
+                <div class="loader mx-auto mb-4"></div>
+                <p class="text-gray-600">Searching for player...</p>
+            </div>
+
+            <!-- Error -->
+            <div id="error" class="text-center py-12 hidden">
+                <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-3"></i>
+                <h3 class="text-lg font-bold text-gray-800 mb-2" id="errorTitle">Error</h3>
+                <p class="text-gray-600 mb-4" id="errorMessage"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 border-t border-gray-200 py-10 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>CLASH SQUAD Clan &copy; 2024. This is a fan-made website.</p>
+            <p class="mt-1">Clash Royale is a trademark of Supercell.</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/players.js"></script>
+</body>
+</html>
