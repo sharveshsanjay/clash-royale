@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clan Members - CLASH SQUAD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'clash-gold': '#1B4DB1',
+                        'clash-orange': '#0F3A75',
+                        'clash-red': '#1A5FD7',
+                        'clash-blue': '#1E90FF',
+                        'clash-dark': '#0A2A43',
+                        'clash-light': '#E5F2FF',
+                    },
+                    fontFamily: {
+                        'clash': ['Montserrat', 'sans-serif'],
+                        'rubik': ['Rubik', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'clash': '0 4px 12px rgba(30, 144, 255, 0.25)',
+                        'clash-hover': '0 8px 24px rgba(30, 144, 255, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white font-rubik text-gray-800">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow-clash z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo + Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-clash-blue to-clash-dark rounded-full flex items-center justify-center text-white font-bold text-xl shadow-clash">
+                        CS
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold font-clash text-clash-blue">CLASH SQUAD</h1>
+                        <p class="text-gray-500 text-sm">Members Directory</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Home</a>
+                    <a href="members.html" class="font-semibold text-clash-blue border-b-2 border-clash-blue pb-1">Members</a>
+                    <a href="players.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Players</a>
+                    <a href="capital.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Capital</a>
+                </nav>
+
+                <!-- Mobile Menu -->
+                <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Home</a>
+                    <a href="members.html" class="font-semibold text-clash-blue border-l-4 border-clash-blue pl-3 py-2">Members</a>
+                    <a href="players.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Players</a>
+                    <a href="capital.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Capital</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-8">
+        <div class="container mx-auto px-4">
+            <!-- Page Header -->
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-bold font-clash clash-gradient mb-4">Clan Members</h1>
+                <p class="text-gray-600 text-lg">Real-time member data from our clan</p>
+                <div class="mt-4">
+                    <span id="lastUpdated" class="text-sm text-gray-500">Last updated: Loading...</span>
+                </div>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="bg-white rounded-2xl shadow-clash p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4 items-center">
+                    <!-- Search -->
+                    <div class="flex-1 w-full">
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="searchInput" 
+                                   placeholder="Search members by name..." 
+                                   class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:border-clash-blue focus:ring-2 focus:ring-clash-blue/20 focus:outline-none transition">
+                        </div>
+                    </div>
+                    
+                    <!-- Sort Options -->
+                    <div class="flex gap-3">
+                        <select id="sortSelect" class="border border-gray-300 rounded-xl px-4 py-3 focus:border-clash-blue focus:outline-none bg-white">
+                            <option value="rank">Sort by Rank</option>
+                            <option value="trophies">Sort by Trophies</option>
+                            <option value="donations">Sort by Donations</option>
+                            <option value="level">Sort by Level</option>
+                        </select>
+                        
+                        <!-- Refresh Button -->
+                        <button id="refreshBtn" class="bg-clash-blue text-white px-5 py-3 rounded-xl hover:bg-blue-600 transition flex items-center gap-2 font-semibold">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Filters -->
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button class="filter-btn active" data-role="all">
+                        All Members <span id="countAll" class="ml-2 bg-clash-blue text-white text-xs px-2 py-1 rounded-full">0</span>
+                    </button>
+                    <button class="filter-btn" data-role="leader">
+                        <i class="fas fa-crown mr-2"></i>Leaders <span id="countLeaders" class="ml-2 bg-clash-gold text-white text-xs px-2 py-1 rounded-full">0</span>
+                    </button>
+                    <button class="filter-btn" data-role="coLeader">
+                        <i class="fas fa-star mr-2"></i>Co-Leaders <span id="countCoLeaders" class="ml-2 bg-clash-red text-white text-xs px-2 py-1 rounded-full">0</span>
+                    </button>
+                    <button class="filter-btn" data-role="elder">
+                        <i class="fas fa-shield-alt mr-2"></i>Elders <span id="countElders" class="ml-2 bg-clash-blue text-white text-xs px-2 py-1 rounded-full">0</span>
+                    </button>
+                    <button class="filter-btn" data-role="member">
+                        <i class="fas fa-user mr-2"></i>Members <span id="countMembers" class="ml-2 bg-gray-600 text-white text-xs px-2 py-1 rounded-full">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading" class="text-center py-16">
+                <div class="loader mx-auto mb-6"></div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Loading Clan Members</h3>
+                <p class="text-gray-600">Fetching real-time data...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="hidden text-center py-16">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-exclamation-triangle text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Failed to Load Data</h3>
+                    <p class="text-gray-600 mb-6" id="errorMessage">Unable to connect to the server.</p>
+                    <div class="flex gap-3 justify-center">
+                        <button id="retryBtn" class="bg-clash-blue text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition font-semibold">
+                            <i class="fas fa-redo mr-2"></i> Try Again
+                        </button>
+                        <a href="index.html" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-xl hover:bg-gray-300 transition font-semibold">
+                            <i class="fas fa-home mr-2"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Summary -->
+            <div id="statsSummary" class="hidden grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+                <div class="bg-white rounded-2xl p-6 shadow-clash text-center hover-lift transition">
+                    <div class="text-3xl font-bold text-clash-blue mb-2" id="totalMembers">0</div>
+                    <div class="text-gray-600">Total Members</div>
+                    <div class="text-xs text-gray-500 mt-1">50 max capacity</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-clash text-center hover-lift transition">
+                    <div class="text-3xl font-bold text-clash-blue mb-2" id="avgTrophies">0</div>
+                    <div class="text-gray-600">Avg Trophies</div>
+                    <div class="text-xs text-gray-500 mt-1">Per member</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-clash text-center hover-lift transition">
+                    <div class="text-3xl font-bold text-clash-blue mb-2" id="totalDonations">0</div>
+                    <div class="text-gray-600">Total Donations</div>
+                    <div class="text-xs text-gray-500 mt-1">This week</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-clash text-center hover-lift transition">
+                    <div class="text-3xl font-bold text-clash-blue mb-2" id="activeMembers">0</div>
+                    <div class="text-gray-600">Active Today</div>
+                    <div class="text-xs text-gray-500 mt-1">Last 24 hours</div>
+                </div>
+            </div>
+
+            <!-- Members Grid View -->
+            <div id="membersGridView" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-users mr-2 text-clash-blue"></i>
+                        <span id="viewTitle">All Members</span>
+                        <span id="memberCountBadge" class="ml-2 bg-clash-light text-clash-blue text-sm px-3 py-1 rounded-full">0</span>
+                    </h2>
+                </div>
+
+                <!-- Grid View -->
+                <div id="gridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Members will be loaded here -->
+                </div>
+            </div>
+
+            <!-- No Results -->
+            <div id="noResults" class="hidden text-center py-16">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-users-slash text-5xl text-gray-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">No Members Found</h3>
+                    <p class="text-gray-600 mb-6">Try adjusting your search or filter to find what you're looking for.</p>
+                    <button id="clearFiltersBtn" class="bg-clash-blue text-white px-6 py-3 rounded-xl hover:bg-blue-600 transition font-semibold">
+                        <i class="fas fa-times mr-2"></i> Clear All Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-10 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>CLASH SQUAD Clan &copy; 2024. This is a fan-made website.</p>
+            <p class="mt-1">Clash Royale is a trademark of Supercell.</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/members.js"></script>
+</body>
+</html>
