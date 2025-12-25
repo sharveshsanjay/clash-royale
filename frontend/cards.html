@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards – Clash Squad</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Rubik:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "royale-blue": "#0070FF",
+                    },
+                    fontFamily: {
+                        rubik: ["Rubik", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            font-family: "Rubik", sans-serif;
+            background: #ffffff;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .nav-link:hover {
+            color: #0070FF;
+        }
+
+        .nav-active {
+            color: #0070FF;
+            border-bottom: 2px solid #0070FF;
+            padding-bottom: 3px;
+        }
+
+        .loader {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #0070FF;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .active {
+            background: #0070FF !important;
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+
+            <div class="flex items-center gap-3">
+                <div class="w-28 h-14 -ml-2 flex items-center justify-center">
+                    <img src="images/cr-logo.png" class="h-full object-contain" />
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold">CLASH SQUAD</h1>
+                    <p class="text-gray-500 text-sm">Card Library</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex gap-6 text-sm font-semibold">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link">Capital</a>
+                <a href="players.html" class="nav-link">Players</a>
+                <a href="cards.html" class="nav-link nav-active">Cards</a>
+                <a href="violations.html" class="nav-link">Violations</a>
+            </nav>
+
+            <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t px-4 py-3 space-y-3">
+            <a href="home.html" class="block font-semibold hover:text-royale-blue">Home</a>
+            <a href="clan.html" class="block font-semibold hover:text-royale-blue">Clan</a>
+            <a href="members.html" class="block font-semibold hover:text-royale-blue">Members</a>
+            <a href="capital.html" class="block font-semibold hover:text-royale-blue">Capital</a>
+            <a href="players.html" class="block font-semibold hover:text-royale-blue">Players</a>
+            <a href="cards.html" class="block font-semibold text-royale-blue">Cards</a>
+            <a href="violations.html" class="block font-semibold hover:text-royale-blue">Violations</a>
+        </div>
+
+    </header>
+
+    <main class="py-12">
+        <div class="container mx-auto px-4">
+
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-extrabold">Card Library</h1>
+                <p class="text-gray-600 text-lg">Search & explore all Clash Royale cards</p>
+            </div>
+
+            <!-- SEARCH + FILTER PANEL -->
+            <section class="bg-white rounded-xl border p-6 shadow-sm mb-10">
+                <div class="grid md:grid-cols-3 gap-4">
+
+                    <!-- Search -->
+                    <div class="relative col-span-2">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input id="cardSearch" placeholder="Search cards..."
+                            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-royale-blue focus:border-royale-blue">
+                    </div>
+
+                    <!-- Sort -->
+                    <select id="sortFilter" class="border border-gray-300 rounded-lg px-4 py-3">
+                        <option value="name">Sort: Name</option>
+                        <option value="elixir">Sort: Elixir</option>
+                        <option value="rarity">Sort: Rarity</option>
+                    </select>
+                </div>
+
+                <!-- Secondary Filters -->
+                <div class="mt-6 grid md:grid-cols-3 gap-4">
+
+                    <select id="rarityFilter" class="border border-gray-300 rounded-lg px-4 py-3">
+                        <option value="all">All Rarities</option>
+                        <option value="Common">Common</option>
+                        <option value="Rare">Rare</option>
+                        <option value="Epic">Epic</option>
+                        <option value="Legendary">Legendary</option>
+                        <option value="Champion">Champion</option>
+                    </select>
+
+                    <select id="typeFilter" class="border border-gray-300 rounded-lg px-4 py-3">
+                        <option value="all">All Types</option>
+                        <option value="Troop">Troop</option>
+                        <option value="Building">Building</option>
+                        <option value="Spell">Spell</option>
+                    </select>
+
+                    <div class="flex gap-2 overflow-x-auto">
+                        <button data-elixir="all" class="px-4 py-2 border rounded-lg bg-gray-100">All</button>
+                        <button data-elixir="2" class="px-4 py-2 border rounded-lg bg-gray-100">2</button>
+                        <button data-elixir="3" class="px-4 py-2 border rounded-lg bg-gray-100">3</button>
+                        <button data-elixir="4" class="px-4 py-2 border rounded-lg bg-gray-100">4</button>
+                        <button data-elixir="5" class="px-4 py-2 border rounded-lg bg-gray-100">5</button>
+                        <button data-elixir="6" class="px-4 py-2 border rounded-lg bg-gray-100">6</button>
+                        <button data-elixir="7" class="px-4 py-2 border rounded-lg bg-gray-100">7+</button>
+                    </div>
+
+                </div>
+
+                <button id="clearFiltersBtn"
+                    class="mt-6 bg-royale-blue text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+                    Clear Filters
+                </button>
+            </section>
+
+            <!-- LOADING -->
+            <div id="loading" class="text-center py-16 hidden">
+                <div class="loader mx-auto mb-4"></div>
+                <p class="text-gray-600">Loading cards...</p>
+            </div>
+
+            <!-- ERROR -->
+            <div id="error" class="hidden text-center py-12">
+                <i class="fa-solid fa-circle-exclamation text-yellow-500 text-4xl mb-3"></i>
+                <p id="errorMessage" class="text-gray-600 mb-4"></p>
+            </div>
+
+            <!-- CARDS GRID -->
+            <div id="cardsGrid">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-royale-blue"></i>
+                        Cards
+                    </h2>
+                    <span id="cardCountBadge" class="bg-royale-blue text-white px-3 py-1 rounded-full text-sm">0</span>
+                </div>
+
+                <p id="filterInfo" class="text-gray-600 text-sm mb-4">Showing 0 cards</p>
+
+                <div id="cardsContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                </div>
+
+                <div class="text-center mt-6">
+                    <button id="loadMoreBtn"
+                        class="bg-gray-100 border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-200 hidden">
+                        Load More
+                    </button>
+                </div>
+            </div>
+
+            <!-- NO RESULTS -->
+            <div id="noResults" class="hidden text-center py-20">
+                <i class="fa-solid fa-circle-xmark text-gray-300 text-5xl"></i>
+                <h2 class="text-xl font-bold mt-3">No Cards Found</h2>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 bg-black text-gray-300 border-t border-gray-700">
+        <div class="container mx-auto px-4 py-12">
+
+            <!-- Top Row -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                <!-- Left: Logo + Name -->
+                <div class="flex items-center gap-3">
+                    <img src="images/cr-logo.png" class="w-10 h-10" alt="Clash Royale Logo">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">CLASH SQUAD</h2>
+                        <p class="text-sm text-gray-400">Official Clan Community Website</p>
+                    </div>
+                </div>
+
+                <!-- Middle: Footer Links -->
+                <div class="flex flex-wrap gap-5 text-sm font-medium justify-center">
+                    <a href="home.html" class="hover:text-royale-blue transition">Home</a>
+                    <a href="clan.html" class="hover:text-royale-blue transition">Clan</a>
+                    <a href="members.html" class="hover:text-royale-blue transition">Members</a>
+                    <a href="capital.html" class="hover:text-royale-blue transition">Capital</a>
+                    <a href="players.html" class="hover:text-royale-blue transition">Players</a>
+                    <a href="cards.html" class="hover:text-royale-blue transition">Cards</a>
+                </div>
+
+                <!-- Right: Social Icons -->
+                <div class="flex gap-5 text-xl">
+                    <a href="https://www.youtube.com/@clashsquad_cr" class="hover:text-royale-blue transition"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/clashsquad.cr/" class="hover:text-royale-blue transition"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-royale-blue transition"><i class="fab fa-discord"></i></a>
+                </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-700 my-10"></div>
+
+            <!-- Bottom Text -->
+            <div class="text-center text-sm text-gray-500">
+                <p>Clash Royale assets and data belong to © Supercell. This website is fan-made and not endorsed by
+                    Supercell.</p>
+                <p class="mt-2">© <span id="year"></span> CLASH SQUAD — All rights reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const menuBtn = document.getElementById("mobileMenuBtn");
+            const menu = document.getElementById("mobileMenu");
+
+            if (!menuBtn || !menu) return;
+
+            // Toggle Menu
+            menuBtn.addEventListener("click", () => {
+                menu.classList.toggle("hidden");
+                menu.classList.toggle("open");
+            });
+
+            // Close when clicking a menu link
+            menu.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("open");
+                });
+            });
+
+            // Close when clicking outside
+            document.addEventListener("click", (e) => {
+                if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("open");
+                }
+            });
+        });
+    </script>
+
+    <script src="js/api.js"></script>
+    <script src="js/cards.js"></script>
+
+</body>
+
+</html>

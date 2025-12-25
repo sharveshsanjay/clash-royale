@@ -1,139 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Search - CLASH SQUAD</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Players – Clash Squad</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;900&family=Rubik:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Global styles -->
+    <link rel="stylesheet" href="css/style.css" />
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'clash-gold': '#1B4DB1',
-                        'clash-orange': '#0F3A75',
-                        'clash-red': '#1A5FD7',
-                        'clash-blue': '#1E90FF',
-                        'clash-dark': '#0A2A43',
-                        'clash-light': '#E5F2FF',
+                        "royale-blue": "#0070FF",
                     },
                     fontFamily: {
-                        'clash': ['Montserrat', 'sans-serif'],
-                        'rubik': ['Rubik', 'sans-serif'],
+                        clash: ["Montserrat", "sans-serif"],
+                        rubik: ["Rubik", "sans-serif"],
                     },
-                    boxShadow: {
-                        'clash': '0 4px 12px rgba(30, 144, 255, 0.25)',
-                        'clash-hover': '0 8px 24px rgba(30, 144, 255, 0.35)',
-                    }
-                }
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            font-family: "Rubik", sans-serif;
+            background: #ffffff;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .nav-link:hover {
+            color: #0070FF;
+        }
+
+        .nav-active {
+            color: #0070FF;
+            border-bottom: 2px solid #0070FF;
+            padding-bottom: 3px;
+        }
+
+        /* Optional loader (same style as other pages) */
+        .loader {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #0070FF;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
-    </script>
+    </style>
 </head>
-<body class="bg-white font-rubik text-gray-800">
-    <!-- Header -->
-    <header class="sticky top-0 bg-white shadow-clash z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-clash-blue to-clash-dark rounded-full flex items-center justify-center text-white font-bold text-xl shadow-clash">
-                        CS
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold font-clash text-clash-blue">CLASH SQUAD</h1>
-                        <p class="text-gray-500 text-sm">Player Search</p>
-                    </div>
+
+<body class="bg-white text-gray-900">
+
+    <!-- HEADER (same pattern as home & members, Players active) -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-28 h-14 -ml-2 flex items-center justify-center">
+                    <img src="images/cr-logo.png" class="h-full object-contain" />
                 </div>
-                <nav class="hidden md:flex space-x-6">
-                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Home</a>
-                    <a href="members.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Members</a>
-                    <a href="players.html" class="font-semibold text-clash-blue border-b-2 border-clash-blue pb-1">Players</a>
-                    <a href="capital.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Capital</a>
-                </nav>
-                <button id="mobileMenuBtn" class="md:hidden text-gray-600">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Home</a>
-                    <a href="members.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Members</a>
-                    <a href="players.html" class="font-semibold text-clash-blue border-l-4 border-clash-blue pl-3 py-2">Players</a>
-                    <a href="capital.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Capital</a>
+                <div>
+                    <h1 class="text-xl font-extrabold">CLASH SQUAD</h1>
+                    <p class="text-gray-500 text-sm">Player Profiles</p>
                 </div>
             </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-6 text-sm">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link">Capital</a>
+                <a href="players.html" class="nav-link nav-active">Players</a>
+                <a href="cards.html" class="nav-link">Cards</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <nav class="flex flex-col px-4 py-3 space-y-3 text-sm font-semibold">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link">Capital</a>
+                <a href="players.html" class="nav-link nav-active">Players</a>
+                <a href="cards.html" class="nav-link">Cards</a>
+            </nav>
         </div>
     </header>
 
-    <main class="py-8">
+    <!-- MAIN -->
+    <main class="py-12">
         <div class="container mx-auto px-4">
-            <h1 class="text-3xl md:text-4xl font-bold font-clash clash-gradient mb-2 text-center">
-                Player Search
-            </h1>
-            <p class="text-gray-600 text-center mb-8">Search for any Clash Royale player by tag</p>
 
-            <!-- Search Form -->
-            <div class="max-w-2xl mx-auto mb-12">
-                <div class="bg-white rounded-2xl shadow-clash p-6">
-                    <form id="playerSearchForm" class="space-y-4">
-                        <div>
-                            <label class="block text-gray-700 mb-2 font-medium">Player Tag</label>
-                            <div class="flex gap-2">
-                                <input type="text" id="playerTagInput" 
-                                       placeholder="#PlayerTag (e.g., #RYPUQ8CY)" 
-                                       class="flex-1 input-primary" required>
-                                <button type="submit" class="btn-primary whitespace-nowrap">
-                                    <i class="fas fa-search mr-2"></i> Search
-                                </button>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-2">
-                                Enter the player's tag (include the # symbol)
-                            </p>
-                        </div>
-                    </form>
-                </div>
+            <!-- TITLE -->
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Player Lookup
+                </h1>
+                <p class="text-gray-600 text-lg mt-1">
+                    View detailed stats and current deck using player tag.
+                </p>
             </div>
 
-            <!-- Player Info -->
-            <div id="playerInfo" class="hidden">
-                <!-- Content loaded by JavaScript -->
-            </div>
+            <!-- SEARCH PANEL -->
+            <section class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 mb-10">
+                <form id="playerSearchForm" class="flex flex-col md:flex-row gap-4 items-center">
+                    <div class="flex-1 w-full relative">
+                        <i class="fas fa-id-card text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+                        <input id="playerTagInput" type="text" placeholder="Enter player tag (e.g. #JY0PRP9L9)"
+                            class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:border-royale-blue focus:ring-2 focus:ring-royale-blue/20 transition" />
+                    </div>
 
-            <!-- Loading -->
-            <div id="loading" class="text-center py-12 hidden">
+                    <button type="submit"
+                        class="bg-royale-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition flex items-center gap-2 whitespace-nowrap">
+                        <i class="fas fa-search"></i> Search Player
+                    </button>
+                </form>
+
+                <p class="text-xs text-gray-500 mt-3">
+                    Tip: You can copy your tag from Clash Royale profile. Include the <strong>#</strong>.
+                </p>
+            </section>
+
+            <!-- LOADING -->
+            <div id="playerLoading" class="hidden text-center py-16">
                 <div class="loader mx-auto mb-4"></div>
-                <p class="text-gray-600">Searching for player...</p>
+                <p class="text-gray-600">Fetching player data...</p>
             </div>
 
-            <!-- Error -->
-            <div id="error" class="text-center py-12 hidden">
-                <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-3"></i>
-                <h3 class="text-lg font-bold text-gray-800 mb-2" id="errorTitle">Error</h3>
-                <p class="text-gray-600 mb-4" id="errorMessage"></p>
-                <button onclick="location.reload()" class="bg-clash-blue text-white px-6 py-2 rounded-lg">
+            <!-- ERROR -->
+            <div id="playerError" class="hidden text-center py-16">
+                <i class="fa-solid fa-circle-exclamation text-5xl text-yellow-500 mb-3"></i>
+                <h2 class="text-xl font-semibold mb-1">Failed to load player</h2>
+                <p id="playerErrorMessage" class="text-gray-600 mb-4"></p>
+                <button id="playerRetryBtn"
+                    class="bg-royale-blue text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
                     Try Again
                 </button>
             </div>
 
-            <!-- Recent Searches (if any) -->
-            <div id="recentSearches" class="mt-12 hidden">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Searches</h3>
-                <div id="recentSearchesList" class="space-y-2"></div>
-            </div>
+            <!-- PLAYER VIEW -->
+            <section id="playerView" class="hidden space-y-8">
+
+                <!-- TOP: PLAYER INFO + STATS -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- Player Info Card -->
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-gray-100 overflow-hidden flex items-center justify-center">
+                                <img id="playerAvatar" src="images/profile-icon.png" alt="Player Icon"
+                                    class="w-full h-full object-cover" />
+                            </div>
+
+                            <div class="flex-1">
+                                <h2 id="playerName" class="text-2xl font-extrabold text-gray-900">Player Name</h2>
+                                <p id="playerTag" class="text-xs text-gray-500 mt-1">#TAG</p>
+
+                                <div class="mt-2 flex flex-wrap gap-2 text-xs">
+                                    <span id="playerClan"
+                                        class="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-700">
+                                        <i class="fas fa-users mr-1 text-xs"></i> No Clan
+                                    </span>
+                                    <span id="playerRole"
+                                        class="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-700">
+                                        <i class="fas fa-crown mr-1 text-xs"></i> —
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mt-4 text-sm">
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs flex items-center gap-1">
+                                    <i class="fas fa-medal text-gray-400"></i> Level
+                                </span>
+                                <span id="playerLevel" class="text-lg font-bold text-gray-900">—</span>
+                            </div>
+
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs flex items-center gap-1">
+                                    <i class="fas fa-trophy text-yellow-500"></i> Trophies
+                                </span>
+                                <span id="playerTrophies" class="text-lg font-bold text-gray-900">—</span>
+                            </div>
+
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs flex items-center gap-1">
+                                    <i class="fas fa-crown text-gray-400"></i> Best Trophies
+                                </span>
+                                <span id="playerBestTrophies" class="text-lg font-bold text-gray-900">—</span>
+                            </div>
+
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs flex items-center gap-1">
+                                    <i class="fas fa-tower-broadcast text-gray-400"></i> Arena
+                                </span>
+                                <span id="playerArena" class="text-sm font-semibold text-gray-900">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Battle Stats Card -->
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                            <i class="fas fa-swords text-royale-blue"></i> Battle Stats
+                        </h3>
+
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs">Wins</span>
+                                <span id="playerWins" class="text-lg font-bold text-gray-900">—</span>
+                            </div>
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs">Losses</span>
+                                <span id="playerLosses" class="text-lg font-bold text-gray-900">—</span>
+                            </div>
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs">3-Crown Wins</span>
+                                <span id="playerThreeCrowns" class="text-lg font-bold text-gray-900">—</span>
+                            </div>
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-500 text-xs">Star Points</span>
+                                <span id="playerStarPoints" class="text-lg font-bold text-gray-900">—</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-sm">
+                            <span class="text-gray-500 text-xs">Favourite Card</span>
+                            <div class="flex items-center gap-3 mt-1">
+                                <div id="favoriteCardImageWrapper"
+                                    class="w-12 h-12 rounded-xl bg-gray-100 overflow-hidden flex items-center justify-center">
+                                    <!-- favourite card img injected -->
+                                </div>
+                                <span id="playerFavouriteCard" class="text-sm font-semibold text-gray-900">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CURRENT DECK SECTION -->
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold flex items-center gap-2">
+                            <i class="fas fa-layer-group text-royale-blue"></i> Current Battle Deck
+                        </h3>
+                        <span id="averageElixir"
+                            class="inline-flex items-center text-xs px-3 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-100">
+                            <i class="fas fa-droplet mr-1 text-purple-500"></i>
+                            Avg Elixir: <span id="averageElixirValue" class="ml-1 font-semibold">—</span>
+                        </span>
+                    </div>
+
+                    <div id="deckContainer" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <!-- deck cards injected here -->
+                    </div>
+                </div>
+
+
+                <!-- RECENT BATTLES -->
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-clock text-royale-blue"></i>
+                        Recent Battles
+                    </h3>
+
+                    <div id="battleLogContainer" class="space-y-3"></div>
+                </div>
+
+                <!-- UPCOMING CHESTS -->
+                <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-box-open text-royale-blue"></i>
+                        Upcoming Chests
+                    </h3>
+
+                    <div id="chestContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                        <!-- chests injected -->
+                    </div>
+                </div>
+
+
+
+            </section>
+
         </div>
     </main>
 
-    <footer class="bg-gray-50 border-t border-gray-200 py-10 mt-12">
-        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
-            <p>CLASH SQUAD Clan &copy; 2024. This is a fan-made website.</p>
-            <p class="mt-1">Clash Royale is a trademark of Supercell.</p>
+    <!-- FOOTER -->
+    <footer class="mt-16 bg-black text-gray-300 border-t border-gray-700">
+        <div class="container mx-auto px-4 py-12">
+
+            <!-- Top Row -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                <!-- Left: Logo + Name -->
+                <div class="flex items-center gap-3">
+                    <img src="images/cr-logo.png" class="w-10 h-10" alt="Clash Royale Logo">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">CLASH SQUAD</h2>
+                        <p class="text-sm text-gray-400">Official Clan Community Website</p>
+                    </div>
+                </div>
+
+                <!-- Middle: Footer Links -->
+                <div class="flex flex-wrap gap-5 text-sm font-medium justify-center">
+                    <a href="home.html" class="hover:text-royale-blue transition">Home</a>
+                    <a href="clan.html" class="hover:text-royale-blue transition">Clan</a>
+                    <a href="members.html" class="hover:text-royale-blue transition">Members</a>
+                    <a href="capital.html" class="hover:text-royale-blue transition">Capital</a>
+                    <a href="players.html" class="hover:text-royale-blue transition">Players</a>
+                    <a href="cards.html" class="hover:text-royale-blue transition">Cards</a>
+                </div>
+
+                <!-- Right: Social Icons -->
+                <div class="flex gap-5 text-xl">
+                    <a href="https://www.youtube.com/@clashsquad_cr" class="hover:text-royale-blue transition"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/clashsquad.cr/" class="hover:text-royale-blue transition"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-royale-blue transition"><i class="fab fa-discord"></i></a>
+                </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-700 my-10"></div>
+
+            <!-- Bottom Text -->
+            <div class="text-center text-sm text-gray-500">
+                <p>Clash Royale assets and data belong to © Supercell. This website is fan-made and not endorsed by
+                    Supercell.</p>
+                <p class="mt-2">© <span id="year"></span> CLASH SQUAD — All rights reserved.</p>
+            </div>
+
         </div>
     </footer>
 
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
     <script src="js/api.js"></script>
     <script src="js/players.js"></script>
+
 </body>
+
 </html>

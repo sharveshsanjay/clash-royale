@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLASH SQUAD – Clash Royale Clan</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;900&family=Rubik:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "royale-blue": "#0070FF",
+                        "esports-gold": "#FFD700",
+                    },
+                    fontFamily: {
+                        clash: ["Montserrat", "sans-serif"],
+                        rubik: ["Rubik", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            background: #ffffff;
+            font-family: "Rubik", sans-serif;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .nav-link:hover {
+            color: #0070FF;
+        }
+
+        .nav-link-active {
+            color: #0070FF;
+            border-bottom: 2px solid #0070FF;
+            padding-bottom: 3px;
+        }
+
+        .section-title {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .section-kicker {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            color: #0070FF;
+        }
+
+        .news-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: 0.2s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Top member cards */
+        .member-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 14px;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Esports badge */
+        .esports-badge {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            font-weight: 800;
+        }
+
+        /* Rules PDF link */
+        .rules-link {
+            background: #f8fafc;
+            border-left: 4px solid #0070FF;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                max-height: 280px !important;
+            }
+
+            .section-kicker {
+                text-align: center;
+            }
+
+            .section-title {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-28 h-14 -ml-2 flex items-center justify-center">
+                    <img src="images/cr-logo.png" class="h-full object-contain" />
+                </div>
+
+
+                <div>
+                    <h1 class="text-xl font-extrabold">CLASH SQUAD</h1>
+                    <p class="text-gray-500 text-sm">Clash Royale Clan</p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6 text-sm">
+                <a class="nav-link nav-link-active">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link">Capital</a>
+                <a href="players.html" class="nav-link">Players</a>
+                <a href="cards.html" class="nav-link">Cards</a>
+                <a href="violations.html" class="nav-link">Violations</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+
+        </div>
+
+        <!-- MOBILE NAV MENU (HIDDEN BY DEFAULT) -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <nav class="flex flex-col px-4 py-3 space-y-3 text-sm">
+                <a class="nav-link nav-link-active">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link">Capital</a>
+                <a href="players.html" class="nav-link">Players</a>
+                <a href="cards.html" class="nav-link">Cards</a>
+                <a href="violations.html" class="nav-link">Violations</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- BANNER -->
+    <section>
+        <img src="images/hero.png" class="w-full hero-image max-h-[420px] object-cover" />
+    </section>
+
+    <!-- SECTION 1 -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+
+            <!-- Phone image (hidden on mobile, visible on tablets/desktops) -->
+            <div class="hidden md:flex justify-center">
+                <img src="images/king2.png" class="w-full max-w-xs lg:max-w-md object-contain" />
+            </div>
+
+
+            <!-- Text -->
+            <div class="text-center md:text-left">
+                <p class="section-kicker mb-2">EPIC CLAN BATTLES</p>
+
+                <h2 class="section-title text-3xl md:text-4xl mb-4">
+                    Real-time battles with <span class="text-royale-blue">CLASH SQUAD</span>
+                </h2>
+
+                <p class="text-gray-600 text-base md:text-lg mb-6">
+                    Clash Squad is a competitive Clash Royale clan focused on wars and clan games,
+                    with an active and friendly Tamil Nadu community.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mb-6 justify-center md:justify-start">
+                    <a class="bg-royale-blue text-white px-6 py-3 rounded-xl font-semibold text-sm text-center">
+                        <i class="fa-solid fa-users mr-2"></i>Join the Clan
+                    </a>
+                    <a href="members.html"
+                        class="border border-royale-blue text-royale-blue px-6 py-3 rounded-xl font-semibold text-sm text-center">
+                        <i class="fa-solid fa-user-group mr-2"></i>View Members
+                    </a>
+                </div>
+
+                <!-- Clan Rules PDF Link -->
+                <div class="rules-link p-4 rounded-lg mb-6">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-file-pdf text-royale-blue text-xl mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-800">Clan Rules & Regulations</h3>
+                            <p class="text-gray-600 text-sm mb-2">View our official clan rules PDF</p>
+                            <a href="images/Clash Squad Rules.pdf" target="_blank"
+                                class="inline-flex items-center gap-2 bg-royale-blue text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-600 transition">
+                                <i class="fa-solid fa-external-link-alt"></i>
+                                Open Rules PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xs font-bold text-gray-700 tracking-widest mb-2 uppercase text-center md:text-left">
+                    Clan Stats
+                </h3>
+
+                <div id="quickStats" class="grid grid-cols-2 gap-3 text-sm"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOADING -->
+    <div id="loading" class="text-center py-8">
+        <div class="loader mx-auto mb-2"></div>
+        <p class="text-gray-600 text-sm">Loading clan data...</p>
+    </div>
+
+    <!-- ESPORTS SECTION -->
+    <section class="py-16 bg-gradient-to-r from-gray-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <p class="section-kicker mb-2">COMPETITIVE ESPORTS</p>
+                <h2 class="section-title text-3xl md:text-4xl mb-4">
+                    Clash Squad <span class="text-esports-gold">Esports Division</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Our elite players compete in national and international Clash Royale tournaments.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200 text-center">
+                    <div class="esports-badge inline-block px-4 py-1 rounded-full text-sm mb-4">
+                        <i class="fa-solid fa-trophy mr-2"></i>TOURNAMENTS
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Tournament Ready</h3>
+                    <p class="text-gray-600 text-sm">
+                        Regular internal tournaments with prize pools. Monthly qualifiers for CRL and other major
+                        events.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200 text-center">
+                    <div class="esports-badge inline-block px-4 py-1 rounded-full text-sm mb-4">
+                        <i class="fa-solid fa-chart-line mr-2"></i>ANALYTICS
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Pro Analytics</h3>
+                    <p class="text-gray-600 text-sm">
+                        Advanced deck tracking, replay analysis, and personalized coaching from top players.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200 text-center">
+                    <div class="esports-badge inline-block px-4 py-1 rounded-full text-sm mb-4">
+                        <i class="fa-solid fa-ranking-star mr-2"></i>SPONSORSHIPS
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Sponsorship Opportunities</h3>
+                    <p class="text-gray-600 text-sm">
+                        Top performers get access to gear sponsorships, streaming equipment, and tournament funding.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-900 to-purple-900 rounded-2xl p-8 text-white text-center">
+                <h3 class="text-2xl font-bold mb-4">Join Our Esports Team</h3>
+                <p class="mb-6 max-w-2xl mx-auto">
+                    Minimum 9000 trophies and tournament experience required. Contact our Esports Manager for tryouts.
+                </p>
+                <a href="https://forms.gle/QdxE6N9XBbeq9DHG8"
+                    class="bg-esports-gold text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition">
+                    <i class="fa-solid fa-gamepad mr-2"></i>Apply for Esports Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Full Clan Info -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-10 items-start">
+
+            <div class="order-2 lg:order-1 flex flex-col lg:flex-row items-center gap-8">
+
+                <!-- IMAGE -->
+                <div class="flex justify-center lg:w-1/2">
+                    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden">
+                        <img src="images/kings.png" class="w-full object-cover" />
+                    </div>
+                </div>
+
+                <!-- TEXT -->
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4">
+                        Rise Through the Arenas <span class="text-royale-blue">With Clash Squad</span>
+                    </h2>
+
+                    <p class="text-gray-600 text-lg max-w-lg mx-auto lg:mx-0">
+                        Compete in wars, dominate challenges, and grow alongside loyal and active clanmates.
+                        Every member makes our squad stronger.
+                    </p>
+                </div>
+
+            </div>
+
+
+
+            <!-- Main Info -->
+            <div class="order-1 lg:order-2">
+
+                <p class="section-kicker mb-2">CLAN OVERVIEW</p>
+
+                <h2 class="section-title text-3xl md:text-4xl mb-4 text-center lg:text-left">
+                    See latest stats of <span class="text-royale-blue">Clash Squad</span>
+                </h2>
+
+                <p class="text-gray-600 mb-6 text-base md:text-lg text-center lg:text-left">
+                    Updated in real time with data from the official Clash Royale API.
+                </p>
+
+                <div id="clanInfo" class="hidden space-y-10">
+
+                    <!-- Clan Info Box -->
+                    <div class="border border-gray-200 rounded-xl p-5 bg-white">
+                        <h3 class="font-semibold mb-4">Clan Information</h3>
+                        <div id="clanDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm"></div>
+                    </div>
+
+                    <!-- Top Members -->
+                    <div>
+                        <h3 class="font-semibold mb-4 text-center lg:text-left">Top Members</h3>
+                        <div id="topMembers" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm"></div>
+                    </div>
+                </div>
+
+                <div id="error"
+                    class="hidden mt-4 text-center border bg-yellow-50 border-yellow-300 text-yellow-700 rounded-xl p-3 text-sm">
+                    Failed to load clan data.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <p class="section-kicker text-center mb-2">CLASH SQUAD NEWS</p>
+            <h2 class="section-title text-center text-3xl md:text-4xl mb-8">Highlights</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <article class="news-card">
+                    <img src="images/river-race.png" class="w-full h-40 object-cover" />
+                    <div class="p-4">
+                        <p class="text-xs text-royale-blue font-bold tracking-widest">CLAN WAR</p>
+                        <h3 class="font-semibold text-lg">River Race Performance</h3>
+                        <p class="text-gray-600 text-sm">
+                            Track how Clash Squad is performing in the current river race.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="images/clan-card.png" class="w-full h-40 object-cover" />
+                    <a href="capital.html" class="block p-4 transition hover:bg-gray-50 rounded-b-xl">
+                        <p class="text-xs text-royale-blue font-bold tracking-widest">
+                            CLAN CAPITAL
+                        </p>
+
+                        <h3 class="font-semibold text-lg text-gray-900">
+                            Capital Progress
+                        </h3>
+
+                        <p class="text-gray-600 text-sm">
+                            Check the latest capital upgrades and raid contributions.
+                        </p>
+
+                        <div class="mt-3 text-sm font-medium text-royale-blue inline-flex items-center gap-1">
+                            View details
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="news-card">
+                    <img src="images/violations.png" class="w-full h-40 object-cover" />
+                    <a href="violations.html" class="block p-4 transition hover:bg-gray-50 rounded-b-xl">
+                        <p class="text-xs text-red-600 font-bold tracking-widest">
+                            NOTICE BOARD
+                        </p>
+
+                        <h3 class="font-semibold text-lg text-gray-900">
+                            Clan Violations
+                        </h3>
+
+                        <p class="text-gray-600 text-sm">
+                            View members under warning, nomination, and kick list based on weekly clan rules.
+                        </p>
+
+                        <div class="mt-3 text-sm font-medium text-red-600 inline-flex items-center gap-1">
+                            View details
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="news-card">
+                    <img src="images/clan.png" class="w-full h-40 object-cover" />
+                    <a href="clan.html" class="block p-4 transition hover:bg-gray-50 rounded-b-xl">
+                        <p class="text-xs text-royale-blue font-bold tracking-widest">
+                            CLAN
+                        </p>
+
+                        <h3 class="font-semibold text-lg text-gray-900">
+                            Clan Overview
+                        </h3>
+
+                        <p class="text-gray-600 text-sm">
+                            View clan details, rules, performance stats, and overall clan information.
+                        </p>
+
+                        <div class="mt-3 text-sm font-medium text-royale-blue inline-flex items-center gap-1">
+                            View details
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </div>
+                    </a>
+                </article>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="py-12 bg-royale-blue text-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold">Join Clash Squad Today</h3>
+                <p class="text-white/80 text-sm">Search our tag: <b>#RYPUQ8CY</b></p>
+            </div>
+
+            <a href="https://link.clashroyale.com/invite/clan/en?tag=RYPUQ8CY&token=tgm4d4xb&platform=android"
+                class="bg-white text-royale-blue px-6 py-3 rounded-full font-semibold text-sm">
+                View Clan Page
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 bg-black text-gray-300 border-t border-gray-700">
+        <div class="container mx-auto px-4 py-12">
+
+            <!-- Top Row -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                <!-- Left: Logo + Name -->
+                <div class="flex items-center gap-3">
+                    <img src="images/cr-logo.png" class="w-10 h-10" alt="Clash Royale Logo">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">CLASH SQUAD</h2>
+                        <p class="text-sm text-gray-400">Official Clan Community Website</p>
+                    </div>
+                </div>
+
+                <!-- Middle: Footer Links -->
+                <div class="flex flex-wrap gap-5 text-sm font-medium justify-center">
+                    <a href="home.html" class="hover:text-royale-blue transition">Home</a>
+                    <a href="clan.html" class="hover:text-royale-blue transition">Clan</a>
+                    <a href="members.html" class="hover:text-royale-blue transition">Members</a>
+                    <a href="capital.html" class="hover:text-royale-blue transition">Capital</a>
+                    <a href="players.html" class="hover:text-royale-blue transition">Players</a>
+                    <a href="cards.html" class="hover:text-royale-blue transition">Cards</a>
+                </div>
+
+                <!-- Right: Social Icons -->
+                <div class="flex gap-5 text-xl">
+                    <a href="https://www.youtube.com/@clashsquad_cr" class="hover:text-royale-blue transition"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/clashsquad.cr/" class="hover:text-royale-blue transition"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-royale-blue transition"><i class="fab fa-discord"></i></a>
+                </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-700 my-10"></div>
+
+            <!-- Bottom Text -->
+            <div class="text-center text-sm text-gray-500">
+                <p>Clash Royale assets and data belong to © Supercell. This website is fan-made and not endorsed by
+                    Supercell.</p>
+                <p class="mt-2">© <span id="year"></span> CLASH SQUAD — All rights reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Mobile menu toggle - ADD THIS
+        document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside - OPTIONAL BUT RECOMMENDED
+        document.addEventListener('click', function (event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+
+            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <script src="js/api.js"></script>
+    <script src="js/home.js"></script>
+
+</body>
+
+</html>

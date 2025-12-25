@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Violations Board • Clash Squad</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "royale-blue": "#0070FF",
+                        "esports-gold": "#FFD700",
+                    },
+                    fontFamily: {
+                        clash: ["Montserrat", "sans-serif"],
+                        rubik: ["Rubik", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            background: #f5f7fb;
+            font-family: "Rubik", sans-serif;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .nav-link:hover {
+            color: #0070FF;
+        }
+
+        .nav-link-active {
+            color: #0070FF;
+            border-bottom: 2px solid #0070FF;
+            padding-bottom: 3px;
+        }
+    </style>
+</head>
+
+<body class="text-gray-900">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-28 h-14 -ml-2 flex items-center justify-center">
+                    <img src="images/cr-logo.png" class="h-full object-contain" />
+                </div>
+
+
+                <div>
+                    <h1 class="text-xl font-extrabold">CLASH SQUAD</h1>
+                    <p class="text-gray-500 text-sm">Clan Violations</p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6 text-sm">
+                <a href="home.html">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link">Capital</a>
+                <a href="players.html" class="nav-link">Players</a>
+                <a href="cards.html" class="nav-link">Cards</a>
+                <a class="nav-link nav-link-active" href="violations.html">Violations</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+
+        </div>
+
+        <!-- MOBILE NAV MENU (HIDDEN BY DEFAULT) -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <nav class="flex flex-col px-4 py-3 space-y-3 text-sm">
+                <a href="home.html">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link">Capital</a>
+                <a href="players.html" class="nav-link">Players</a>
+                <a href="cards.html" class="nav-link">Cards</a>
+                <a href="violations.html" class="nav-link nav-link-active">Violations</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="py-10">
+        <div class="container mx-auto px-4 max-w-4xl">
+
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-extrabold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bullhorn text-red-500"></i>
+                    Clan Notice Board
+                </h1>
+                <p class="text-gray-600 mt-2">
+                    Weekly evaluation of member performance, violations, and rewards.
+                </p>
+            </div>
+
+            <!-- LOADING -->
+            <div id="loading" class="text-center py-16">
+                <i class="fa-solid fa-spinner fa-spin text-3xl text-royale-blue mb-3"></i>
+                <p class="text-gray-600">Evaluating member activity...</p>
+            </div>
+
+            <!-- ERROR -->
+            <div id="error" class="hidden text-center py-16 text-red-600 font-semibold">
+                Failed to load violations.
+            </div>
+
+            <!-- CONTENT -->
+            <div id="content" class="hidden space-y-6">
+
+                <!-- PROMOTIONS -->
+                <div id="promotionBoard"
+                    class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 shadow-sm"></div>
+
+                <!-- NOMINATION -->
+                <div id="nominationBoard"
+                    class="bg-red-50 border border-red-200 rounded-2xl p-6 shadow-sm"></div>
+
+                <!-- KICK -->
+                <div id="kickBoard"
+                    class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 shadow-sm"></div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 bg-black text-gray-300 border-t border-gray-700">
+        <div class="container mx-auto px-4 py-12">
+
+            <!-- Top Row -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                <!-- Left: Logo + Name -->
+                <div class="flex items-center gap-3">
+                    <img src="images/cr-logo.png" class="w-10 h-10" alt="Clash Royale Logo">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">CLASH SQUAD</h2>
+                        <p class="text-sm text-gray-400">Official Clan Community Website</p>
+                    </div>
+                </div>
+
+                <!-- Middle: Footer Links -->
+                <div class="flex flex-wrap gap-5 text-sm font-medium justify-center">
+                    <a href="home.html" class="hover:text-royale-blue transition">Home</a>
+                    <a href="clan.html" class="hover:text-royale-blue transition">Clan</a>
+                    <a href="members.html" class="hover:text-royale-blue transition">Members</a>
+                    <a href="capital.html" class="hover:text-royale-blue transition">Capital</a>
+                    <a href="players.html" class="hover:text-royale-blue transition">Players</a>
+                    <a href="cards.html" class="hover:text-royale-blue transition">Cards</a>
+                </div>
+
+                <!-- Right: Social Icons -->
+                <div class="flex gap-5 text-xl">
+                    <a href="https://www.youtube.com/@clashsquad_cr" class="hover:text-royale-blue transition"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/clashsquad.cr/" class="hover:text-royale-blue transition"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-royale-blue transition"><i class="fab fa-discord"></i></a>
+                </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-700 my-10"></div>
+
+            <!-- Bottom Text -->
+            <div class="text-center text-sm text-gray-500">
+                <p>Clash Royale assets and data belong to © Supercell. This website is fan-made and not endorsed by
+                    Supercell.</p>
+                <p class="mt-2">© <span id="year"></span> CLASH SQUAD — All rights reserved.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Mobile menu toggle - ADD THIS
+        document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside - OPTIONAL BUT RECOMMENDED
+        document.addEventListener('click', function (event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+
+            if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- SCRIPTS -->
+    <script src="js/api.js"></script>
+    <script src="js/violations.js"></script>
+
+</body>
+</html>

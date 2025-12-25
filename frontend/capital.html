@@ -1,108 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clan Capital - CLASH SQUAD</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capital • Clash Squad</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'clash-gold': '#1B4DB1',
-                        'clash-orange': '#0F3A75',
-                        'clash-red': '#1A5FD7',
-                        'clash-blue': '#1E90FF',
-                        'clash-dark': '#0A2A43',
-                        'clash-light': '#E5F2FF',
+                        "royale-blue": "#0070FF",
                     },
                     fontFamily: {
-                        'clash': ['Montserrat', 'sans-serif'],
-                        'rubik': ['Rubik', 'sans-serif'],
+                        rubik: ["Rubik", "sans-serif"],
                     },
-                    boxShadow: {
-                        'clash': '0 4px 12px rgba(30, 144, 255, 0.25)',
-                        'clash-hover': '0 8px 24px rgba(30, 144, 255, 0.35)',
-                    }
-                }
-            }
-        }
+                },
+            },
+        };
     </script>
+
+    <style>
+        body {
+            background: #f5f7fb;
+            font-family: "Rubik", sans-serif;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #374151;
+            transition: 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #0070FF;
+        }
+
+        .nav-active {
+            color: #0070FF !important;
+            border-bottom: 2px solid #0070FF;
+            padding-bottom: 4px;
+        }
+    </style>
 </head>
-<body class="bg-white font-rubik text-gray-800">
-    <!-- Header -->
-    <header class="sticky top-0 bg-white shadow-clash z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-clash-blue to-clash-dark rounded-full flex items-center justify-center text-white font-bold text-xl shadow-clash">
-                        CS
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold font-clash text-clash-blue">CLASH SQUAD</h1>
-                        <p class="text-gray-500 text-sm">Clan Capital</p>
-                    </div>
+
+<body class="text-gray-900">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+
+            <div class="flex items-center gap-3">
+                <div class="w-28 h-14 -ml-2 flex items-center justify-center">
+                    <img src="images/cr-logo.png" class="h-full object-contain" />
                 </div>
-                <nav class="hidden md:flex space-x-6">
-                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Home</a>
-                    <a href="members.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Members</a>
-                    <a href="players.html" class="font-semibold text-gray-600 hover:text-clash-blue transition">Players</a>
-                    <a href="capital.html" class="font-semibold text-clash-blue border-b-2 border-clash-blue pb-1">Capital</a>
-                </nav>
-                <button id="mobileMenuBtn" class="md:hidden text-gray-600">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="index.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Home</a>
-                    <a href="members.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Members</a>
-                    <a href="players.html" class="font-semibold text-gray-600 hover:text-clash-blue transition py-2 pl-3">Players</a>
-                    <a href="capital.html" class="font-semibold text-clash-blue border-l-4 border-clash-blue pl-3 py-2">Capital</a>
+                <div>
+                    <h1 class="text-xl font-extrabold">CLASH SQUAD</h1>
+                    <p class="text-gray-500 text-xs">Clan Capital • Members & Clan Relationship</p>
                 </div>
             </div>
+
+            <nav class="hidden md:flex gap-6 text-sm font-semibold">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="clan.html" class="nav-link">Clan</a>
+                <a href="members.html" class="nav-link">Members</a>
+                <a href="capital.html" class="nav-link nav-active">Capital</a>
+                <a href="players.html" class="nav-link">Players</a>
+                <a href="cards.html" class="nav-link">Cards</a>
+                <a href="violations.html" class="nav-link">Violations</a>
+            </nav>
+
+            <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 px-4 pb-4 space-y-3">
+            <a href="home.html" class="nav-link block">Home</a>
+            <a href="clan.html" class="nav-link block">Clan</a>
+            <a href="members.html" class="nav-link block">Members</a>
+            <a href="capital.html" class="nav-link nav-active block">Capital</a>
+            <a href="players.html" class="nav-link block">Players</a>
+            <a href="cards.html" class="nav-link block">Cards</a>
+            <a href="violations.html" class="nav-link block">Violations</a>
         </div>
     </header>
 
-    <main class="py-8">
+    <!-- MAIN -->
+    <main class="py-10">
         <div class="container mx-auto px-4">
-            <h1 class="text-3xl md:text-4xl font-bold font-clash clash-gradient mb-2 text-center">
-                Clan Capital
-            </h1>
-            <p class="text-gray-600 text-center mb-8">Clan Capital information and statistics</p>
 
-            <!-- Loading -->
-            <div id="loading" class="text-center py-12">
-                <div class="loader mx-auto mb-4"></div>
-                <p class="text-gray-600">Loading clan capital data...</p>
+            <!-- TITLE -->
+            <div class="mb-8 text-center">
+                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Clan Capital: Members × Clan Relationship
+                </h1>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+                    Capital here means how strongly members contribute to and grow with the clan —
+                    through trophies, donations, support, and loyalty.
+                </p>
             </div>
 
-            <!-- Capital Info -->
-            <div id="capitalInfo" class="hidden">
-                <!-- Content loaded by JavaScript -->
+            <!-- LOADING -->
+            <div id="loading" class="text-center py-20">
+                <i class="fa-solid fa-spinner fa-spin text-4xl text-royale-blue mb-4"></i>
+                <p class="text-gray-600">Analyzing clan and member relationship...</p>
             </div>
 
-            <!-- Error -->
-            <div id="error" class="text-center py-12 hidden">
-                <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-3"></i>
-                <h3 class="text-lg font-bold text-gray-800 mb-2">Error</h3>
-                <p class="text-gray-600 mb-4" id="errorMessage"></p>
+            <!-- ERROR -->
+            <div id="error" class="hidden text-center py-20">
+                <i class="fa-solid fa-circle-exclamation text-5xl text-yellow-500 mb-3"></i>
+                <h2 class="text-xl font-bold mb-2">Failed to load capital stats</h2>
+                <p id="errorMessage" class="text-gray-600"></p>
             </div>
+
+            <!-- CONTENT -->
+            <div id="capitalContent" class="hidden space-y-10">
+
+                <!-- HEADER SUMMARY (Clan + Overall Relationship) -->
+                <section id="capitalHeader"></section>
+
+                <!-- DASHBOARD: CLAN HEALTH OVERVIEW -->
+                <section>
+                    <h2 class="text-2xl font-extrabold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line text-royale-blue"></i>
+                        Clan Health Overview
+                    </h2>
+                    <div id="capitalOverview" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+                </section>
+
+                <!-- RELATIONSHIP BARS -->
+                <section>
+                    <h2 class="text-2xl font-extrabold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-heart text-red-500"></i>
+                        Member–Clan Relationship home
+                    </h2>
+                    <div id="relationshipBars"
+                        class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 space-y-4"></div>
+                </section>
+
+                <!-- LEADERBOARDS -->
+                <section class="grid lg:grid-cols-3 gap-6">
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-orange-500"></i>
+                            Top Contributors
+                        </h3>
+                        <div id="topContributors" class="space-y-3"></div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-hand-holding-heart text-rose-500"></i>
+                            Top Donors
+                        </h3>
+                        <div id="topDonors" class="space-y-3"></div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-trophy text-yellow-400"></i>
+                            Trophy Pushers
+                        </h3>
+                        <div id="topTrophyPushers" class="space-y-3"></div>
+                    </div>
+                </section>
+
+                <!-- MEMBERSHIP RELATIONSHIP CARDS -->
+                <section>
+                    <h2 class="text-2xl font-extrabold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-users-line text-royale-blue"></i>
+                        Member Relationship Cards
+                    </h2>
+                    <p class="text-sm text-gray-500 mb-3">
+                        Showing the top members by overall relationship with the clan (contribution + trophies +
+                        support).
+                    </p>
+                    <div id="membersRelationship" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                </section>
+
+                <!-- NOTICE BOARD -->
+                <section>
+                    <h2 class="text-2xl font-extrabold mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-bullhorn text-red-500"></i>
+                        Notice Board
+                    </h2>
+
+                    <div id="noticeBoard" class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+                        <p class="text-gray-600">Loading notices...</p>
+                    </div>
+                </section>
+
+            </div>
+
         </div>
     </main>
 
-    <footer class="bg-gray-50 border-t border-gray-200 py-10 mt-12">
-        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
-            <p>CLASH SQUAD Clan &copy; 2024. This is a fan-made website.</p>
-            <p class="mt-1">Clash Royale is a trademark of Supercell.</p>
+    <!-- FOOTER -->
+    <footer class="mt-16 bg-black text-gray-300 border-t border-gray-700">
+        <div class="container mx-auto px-4 py-12">
+
+            <!-- Top Row -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+
+                <!-- Left: Logo + Name -->
+                <div class="flex items-center gap-3">
+                    <img src="images/cr-logo.png" class="w-10 h-10" alt="Clash Royale Logo">
+                    <div>
+                        <h2 class="text-xl font-bold text-white">CLASH SQUAD</h2>
+                        <p class="text-sm text-gray-400">Official Clan Community Website</p>
+                    </div>
+                </div>
+
+                <!-- Middle: Footer Links -->
+                <div class="flex flex-wrap gap-5 text-sm font-medium">
+                    <a href="home.html" class="hover:text-royale-blue transition">Home</a>
+                    <a href="clan.html" class="hover:text-royale-blue transition">Clan</a>
+                    <a href="members.html" class="hover:text-royale-blue transition">Members</a>
+                    <a href="war.html" class="hover:text-royale-blue transition">War</a>
+                    <a href="capital.html" class="hover:text-royale-blue transition">Capital</a>
+                    <a href="players.html" class="hover:text-royale-blue transition">Players</a>
+                    <a href="cards.html" class="hover:text-royale-blue transition">Cards</a>
+                </div>
+
+                <!-- Right: Social Icons -->
+                <div class="flex gap-5 text-xl">
+                    <a href="#" class="hover:text-royale-blue transition"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-royale-blue transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-royale-blue transition"><i class="fab fa-discord"></i></a>
+                </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-700 my-10"></div>
+
+            <!-- Bottom Text -->
+            <div class="text-center text-sm text-gray-500">
+                <p>Clash Royale assets and data belong to © Supercell. This website is fan-made and not endorsed by
+                    Supercell.</p>
+                <p class="mt-2">© <span id="year"></span> CLASH SQUAD — All rights reserved.</p>
+            </div>
+
         </div>
     </footer>
 
+    <script>
+
+    </script>
+
+    <!-- SCRIPTS -->
     <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/capital.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById("year").textContent = new Date().getFullYear();
+        const mobileBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+        }
+    </script>
+
 </body>
+
 </html>
