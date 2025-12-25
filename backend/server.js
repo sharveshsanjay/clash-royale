@@ -329,6 +329,59 @@ app.get('/api/clan/:tag/capital', async (req, res) => {
     }
 });
 
+// Current River Race endpoint
+app.get('/api/clan/:tag/currentriverrace', async (req, res) => {
+    try {
+        const clanTag = encodeURIComponent(req.params.tag);
+
+        const data = await makeClashRequest(`/clans/${clanTag}/currentriverrace`);
+
+        res.json({
+            error: false,
+            data: data,
+            timestamp: new Date().toISOString()
+        });
+
+    } catch (error) {
+        console.error('❌ Current River Race Error:', error.response?.data || error.message);
+
+        res.status(error.response?.status || 500).json({
+            error: true,
+            message: error.response?.data?.message || 'Failed to fetch current river race',
+            status: error.response?.status
+        });
+    }
+});
+
+// Player battle log
+app.get('/api/player/:tag/battlelog', async (req, res) => {
+    try {
+        const tag = encodeURIComponent(req.params.tag);
+        const data = await makeClashRequest(`/players/${tag}/battlelog`);
+        res.json({ error: false, data });
+    } catch (err) {
+        res.status(500).json({
+            error: true,
+            message: 'Failed to fetch battle log'
+        });
+    }
+});
+
+// Player upcoming chests
+app.get('/api/player/:tag/upcomingchests', async (req, res) => {
+    try {
+        const tag = encodeURIComponent(req.params.tag);
+        const data = await makeClashRequest(`/players/${tag}/upcomingchests`);
+        res.json({ error: false, data });
+    } catch (err) {
+        res.status(500).json({
+            error: true,
+            message: 'Failed to fetch upcoming chests'
+        });
+    }
+});
+
+
 // 404 handler
 app.use((req, res) => {
     res.status(404).json({
